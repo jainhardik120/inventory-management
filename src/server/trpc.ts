@@ -61,6 +61,7 @@ export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(async ({ ctx, next }) => {
     const session = await auth.api.getSession({ headers: ctx.headers });
+    console.log(JSON.stringify(session))
     if (session === null) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }

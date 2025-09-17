@@ -1,17 +1,10 @@
-import {
-  createCallerFactory,
-  createTRPCRouter,
-  publicProcedure,
-} from "@/server/trpc";
+import { createCallerFactory, createTRPCRouter } from "@/server/trpc";
 
 import type { inferRouterOutputs, inferRouterInputs } from "@trpc/server";
-import z from "zod";
+import { categoryRouter } from "./category";
 
 export const appRouter = createTRPCRouter({
-  helloWorld: publicProcedure.input(z.string()).query(async ({ input }) => {
-    await new Promise((f) => setTimeout(f, 5000));
-    return `hello from api ${input}`;
-  }),
+  category: categoryRouter,
 });
 
 export type AppRouter = typeof appRouter;

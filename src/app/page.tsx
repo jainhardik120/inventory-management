@@ -1,14 +1,17 @@
-"use client";
+import { api } from "@/server/server";
+import { DataTable } from "@/components/ui/datatable";
+import { CreateCategoryForm } from "./create-category-form";
+import { CategoryColumns } from "./category-columns";
 
-import { api } from "@/server/react";
-
-export default function Home() {
-  const response = api.helloWorld.useQuery("world");
+export default async function Home() {
+  const categories = await api.category.getAllCategories();
   return (
-    <div>
-      {response.isLoading && "Loading..."}
-      {response.error && `Error : ${response.error}`}
-      {response.data !== undefined && response.data}
-    </div>
+    <DataTable
+      columns={CategoryColumns}
+      data={categories}
+      CreateButton={<CreateCategoryForm />}
+      name="Category"
+      filterOn="name"
+    />
   );
 }

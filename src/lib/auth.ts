@@ -16,7 +16,10 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    sendResetPassword: async () => {},
+    sendResetPassword: async () => {
+      // Implement code to send reset password email
+      // Email send -> resend, sendgrid, aws ses, etc
+    },
   },
   trustedOrigins: ['https://local-dev-mac.hardikja.in', 'http://localhost:3000'],
 });

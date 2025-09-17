@@ -21,7 +21,6 @@ export default function Page() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
   return (
     <Card className="max-w-md">
       <CardHeader>
@@ -69,6 +68,7 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <Checkbox
               id="remember"
+              checked={rememberMe}
               onClick={() => {
                 setRememberMe(!rememberMe);
               }}
